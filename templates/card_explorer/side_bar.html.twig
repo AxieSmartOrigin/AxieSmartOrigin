@@ -1,21 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="sidebar" class="bg-dark text-white collapse collapse-horizontal">
-{# <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;"> #}
-    <div class="d-flex flex-column">
+        <div id="sidebar" class="bg-dark text-white collapse collapse-horizontal d-lg-block">
+            <div class="bg-dark fixed h-100 p-4">
+                <div class="d-flex justify-content-around justify-content-lg-center mb-3">
+                    <div class="text-center">
+                        <h1 href="/card/explorer" class="text-white text-center">Card Explorer</h1>
+                        <a href="twitter"><strong> by Axie Smart Origin</strong></a>
+                    </div>
 
-        {# <div class="fixed" style="width: 248px;"> #}
-        <div class="bg-dark fixed h-100 p-4">
-            <div class="d-flex justify-content-between">
-                <h1 href="/card/explorer" class="text-white text-center">Card Explorer</h1>
-                <button class="btn btn-secondary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
-                    <<
-                </button> 
-            </div>
-            <hr class="">
+                    <button class="btn btn-secondary fw-bold d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                        <<
+                    </button> 
+                </div>
 
-            <form method="GET">
+                <form method="GET">
                 <ul class="nav nav-pills">
                 {# -------------------------------------------------------------------------- #}
                     <li class="nav-item text-center w-100 mb-2">
@@ -24,36 +23,36 @@
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="aquatic-class" name="class" value="Aquatic" autocomplete="off">
-                                    <label class="btn btn-secondary aquatic" for="aquatic-class">Aquatic</label>
+                                    <label class="btn btn-secondary btn-outline-primary aquatic" for="aquatic-class">Aquatic</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="beast-class" name="class" value="Beast" autocomplete="off">
-                                    <label class="btn btn-secondary beast" for="beast-class">Beast</label>
+                                    <label class="btn btn-secondary btn-outline-primary beast" for="beast-class">Beast</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="bird-class" name="class" value="Bird" autocomplete="off">
-                                    <label class="btn btn-secondary bird" for="bird-class">Bird</label>
+                                    <label class="btn btn-secondary btn-outline-primary bird" for="bird-class">Bird</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="bug-class" name="class" value="Bug" autocomplete="off">
-                                    <label class="btn btn-secondary bug" for="bug-class">Bug</label>
+                                    <label class="btn btn-secondary btn-outline-primary bug" for="bug-class">Bug</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="plant-class" name="class" value="Plant" autocomplete="off">
-                                    <label class="btn btn-secondary plant" for="plant-class">Plant</label>
+                                    <label class="btn btn-secondary btn-outline-primary plant" for="plant-class">Plant</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="reptile-class" name="class" value="Reptile" autocomplete="off">
-                                    <label class="btn btn-secondary reptile" for="reptile-class">Reptile</label>
+                                    <label class="btn btn-secondary btn-outline-primary reptile" for="reptile-class">Reptile</label>
                             </div>                        
                         </div>
                     </li>
-                {# -------------------------------------------------------------------------- #}
+                    {# -------------------------------------------------------------------------- #}
 
                     <li class="nav-item text-center w-100 mb-2">
                         <div>Parts</div>
@@ -61,32 +60,32 @@
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="ear-part" name="part" value="Ear" autocomplete="off">
-                                    <label class="btn btn-secondary" for="ear-part">Ear</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="ear-part">Ear</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="eye-part" name="part" value="Eye" autocomplete="off">
-                                    <label class="btn btn-secondary" for="eye-part">Eye</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="eye-part">Eye</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="mouth-part" name="part" value="Mouth" autocomplete="off">
-                                    <label class="btn btn-secondary" for="mouth-part">Mouth</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="mouth-part">Mouth</label>
                             </div>
-
+                   
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="horn-part" name="part" value="Horn" autocomplete="off">
-                                    <label class="btn btn-secondary" for="horn-part">Horn</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="horn-part">Horn</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="back-part" name="part" value="Back" autocomplete="off">
-                                    <label class="btn btn-secondary" for="back-part">Back</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="back-part">Back</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="tail-part" name="part" value="Tail" autocomplete="off">
-                                    <label class="btn btn-secondary" for="tail-part">Tail</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="tail-part">Tail</label>
                             </div>                        
                         </div>
                     </li>
@@ -98,17 +97,17 @@
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="0-cost" name="cost" value="0" autocomplete="off">
-                                    <label class="btn btn-secondary" for="0-cost">0</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="0-cost">0</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="1-cost" name="cost" value="1" autocomplete="off">
-                                    <label class="btn btn-secondary" for="1-cost">1</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="1-cost">1</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="2-cost" name="cost" value="2" autocomplete="off">
-                                    <label class="btn btn-secondary" for="2-cost">2</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="2-cost">2</label>
                             </div>                
                         </div>
                     </li>
@@ -119,46 +118,69 @@
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="attack-tag" name="tag" value="Attack" autocomplete="off">
-                                    <label class="btn btn-secondary" for="attack-tag">Attack</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="attack-tag">Attack</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="banish-tag" name="tag" value="Banish" autocomplete="off">
-                                    <label class="btn btn-secondary" for="banish-tag">Banish</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="banish-tag">Banish</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="innate-tag" name="tag" value="Innate" autocomplete="off">
-                                    <label class="btn btn-secondary" for="innate-tag">Innate</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="innate-tag">Innate</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="power-tag" name="tag" value="Power" autocomplete="off">
-                                    <label class="btn btn-secondary" for="power-tag">Power</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="power-tag">Power</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="secret-tag" name="tag" value="Secret" autocomplete="off">
-                                    <label class="btn btn-secondary" for="secret-tag">Secret</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="secret-tag">Secret</label>
                             </div>
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="skill-tag" name="tag" value="Skill" autocomplete="off">
-                                    <label class="btn btn-secondary" for="skill-tag">Skill</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="skill-tag">Skill</label>
                             </div>         
 
                             <div class="p-1">
                                 <input type="checkbox" class="btn-check" id="retain-tag" name="tag" value="Retain" autocomplete="off">
-                                    <label class="btn btn-secondary" for="retain-tag">Retain</label>
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="retain-tag">Retain</label>
                             </div>                     
                         </div>
                     </li>
-                </ul>
-                <input type="submit" value="Submit">                
-            </form>
-        </div>
-    </div>
-</div>
+                    {# -------------------------------------------------------------------------- #}
 
+                    <li class="nav-item text-center w-100 mb-2 ">
+                        <div>Primary Effect</div>
+                        <div class="d-flex flex-row flex-wrap justify-content-center">
+
+                            <div class="p-1">
+                                <input type="checkbox" class="btn-check" id="damage" name="damage" value="true" autocomplete="off">
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="damage">Damage</label>
+                            </div>
+
+                            <div class="p-1">
+                                <input type="checkbox" class="btn-check" id="shield" name="shield" value="true" autocomplete="off">
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="shield">Shield</label>
+                            </div>
+
+                            <div class="p-1">
+                                <input type="checkbox" class="btn-check" id="heal" name="heal" value="true" autocomplete="off">
+                                    <label class="btn btn-secondary btn-outline-primary text-white" for="heal">Heal</label>
+                            </div>                
+                        </div>
+                    </li>
+                    <li class="nav-item text-center w-100 m-2">
+                        <input class="btn btn-primary m-1"type="submit" value="Search">
+                        <a class="m-1" href="{{ path("app_card_explorer_browse")}}">Reset</a>
+                    </li>
+                </ul>
+            </form>
+            </div>
+        </div>  
 {% endblock %}
 

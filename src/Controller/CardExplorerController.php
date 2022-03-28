@@ -44,7 +44,7 @@ class CardExplorerController extends AbstractController
 
             // Je créé le tableau $criteria qui contient les filtres pertinents pour le tri des cartes,
             // cela va me permettre d'ignorer tout les filtres qui n'ont rien à voir avec les cartes
-            $criteria = array('class', 'part', 'cost', 'tag');
+            $criteria = array('class', 'part', 'cost', 'tag', 'damage', 'shield', 'heal');
    
             foreach ($queriesFilters as $key => $tabl) {
                 foreach ($tabl as $query => $value) {
@@ -79,7 +79,10 @@ class CardExplorerController extends AbstractController
                 ['class' => null,
                  'part' => null,
                  'cost' => null,
-                 'tag' => null];
+                 'tag' => null,
+                 'damage' => null,
+                 'shield' => null,
+                 'heal' => null,];
 
                 // Dans cette boucle, on vérifie que les filtres matchs avec la carte,
                 // On oublie pas qu'un filtre peut avoir plusieurs valeurs ex:"/?class=Aquatic&class=Beast&part=Horn"
@@ -90,6 +93,8 @@ class CardExplorerController extends AbstractController
                         $var = "get" . $var;
                         //dump($card->$var());
                         $cardProperty = $card->$var();
+                        // dump('property', $property);
+                        // dump('cardProperty', $cardProperty);
                         if ($property == 'tag') {
                             //dump("dans le if");
                             foreach ($cardProperty as $key => $tag) {
@@ -105,12 +110,25 @@ class CardExplorerController extends AbstractController
                                     $compareArray[array_search($value,$tabl)] = false;
                                     //dump(array_search($value,$tabl) . ' not the same but already true');
                                 }  
+                            } 
+
+
+                            //elseif ($property == 'damage' || $property == 'shield' || $property == 'heal') {
+                        }elseif ($property == 'damage' || $property == 'shield' || $property == 'heal') {
+                            //dump("dans le if");
+                            if ($cardProperty == 0) {
+                                $compareArray[array_search($value,$tabl)] = false;
+
+                            }elseif ($cardProperty != 0) {
+                                $compareArray[array_search($value,$tabl)] = true;
                             }
+                            
+
                         }elseif ($cardProperty == $value) {
                             if ($compareArray[array_search($value,$tabl)] != true) {
 
                                 $compareArray[array_search($value,$tabl)] = true;
-                                //dump($compareArray . ' set on true');
+                        //dump(' set on true');
                             }elseif ($compareArray[array_search($value,$tabl)] == true) {/*dump($property . ' already on true');*/}   
                         }elseif ($compareArray[array_search($value,$tabl)] !== true) {
 
@@ -119,6 +137,9 @@ class CardExplorerController extends AbstractController
                         }                  
                     }
                 }
+                //dump($compareArray);
+                // dump($card);
+
                 // Désormais la que l'on vient de traiter possède un tableau $compareArray avec les valeurs true, false ou null
 
                 // Nous traitons une dernière fois les filtres de la cartes:
@@ -147,7 +168,7 @@ class CardExplorerController extends AbstractController
             $cards = $cardRepository->findAllOrder();
             $queriesFilters = [];
         }
-        return $this->render('card_explorer/browseV2.html.twig', [
+        return $this->render('card_explorer/browse.html.twig', [
             'cards' => $cards,
             'queriesFilters' => $queriesFilters,
         ]);
