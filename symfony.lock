@@ -77,6 +77,15 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "easycorp/easyadmin-bundle": {
+        "version": "3.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
+        }
+    },
     "egulias/email-validator": {
         "version": "3.1.2"
     },
@@ -219,6 +228,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "squirrelphp/twig-php-syntax": {
+        "version": "v1.7"
     },
     "symfony/asset": {
         "version": "v5.4.3"
@@ -440,6 +452,9 @@
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.25.0"
+    },
     "symfony/process": {
         "version": "v5.4.5"
     },
@@ -536,6 +551,9 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/uid": {
+        "version": "v5.4.3"
+    },
     "symfony/validator": {
         "version": "5.4",
         "recipe": {
@@ -568,6 +586,25 @@
         "files": [
             "config/packages/web_profiler.yaml",
             "config/routes/web_profiler.yaml"
+        ]
+    },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.14",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.10",
+            "ref": "2858aeed7e1d81a45365c049eb533cc8827e380b"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js",
+            "assets/styles/app.css",
+            "config/packages/webpack_encore.yaml",
+            "package.json",
+            "webpack.config.js"
         ]
     },
     "symfony/yaml": {

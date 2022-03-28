@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Card list{% endblock %}
+
+{% block body %}
+
+
+    <div class="d-flex flex-row container-fluid p-0 {% if cards|length > 6 %}h-100{% else %}vh-100{% endif %}">
+    {% include "card_explorer/side_bar.html.twig" %}
+        <div class="cards-container container-fluid bg-darkgrey">
+            <button id="btn-sidebar" class="btn btn-secondary bg-dark fixed fw-bold mt-2 collapse collapse-horizontal show" type="button" data-bs-toggle="collapse" data-bs-target=".collapse" aria-expanded="false" aria-controls="sidebar">
+            >>
+            </button>             
+            <div class="text-white text-decoration-underline fs-3 m-3 mt-5">
+            {% if cards|length > 0 %}Matched {{ cards|length }} Cards for :
+            </div>
+
+                {% if queriesFilters is defined %}
+                <ul class="d-flex flex-wrap text-black ms-2">
+                
+            {% for key, query in queriesFilters %}
+                {% for value in query %}
+                    <li class="list-query rounded px-2 m-1">{{value}}</li>
+                {% endfor %}
+            {% endfor %}
+                </ul>   
+                {% endif %}
+            {% else %}No card found</div>
+            {% endif %}
+        
+            <div class="row py-2 pb-2 bg-darkgrey">
+
+            {% for card in cards %}
+            {# <pre>
+                {{ dump(card.tag) }}
+            </pre> #}
+                    {% include "card_explorer/card_view.html.twig" %}   
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+ var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+ if (width >= 1024){
+    window.onload=function(){
+        document.getElementById('btn-sidebar').click();
+
+    };
+ }
+</script>
+{% endblock %}
+

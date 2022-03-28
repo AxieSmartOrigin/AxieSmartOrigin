@@ -1,0 +1,86 @@
+$aquatic: #00b8ce;
+$beast: #ffb812;
+$bug: #ff5341;
+$bird: #ff8bbd;
+$plant: #6cc000;
+$reptile: #dc8be4;
+$mech: #c6bdd4;
+$dawn: #beceff;
+$dusk: #129092;
+
+$secondary: #343a40;
+
+.aquatic {
+    color: $aquatic !important;
+}
+.beast {
+    color: $beast !important;
+}
+.bug {
+    color: $bug !important;
+}
+.bird {
+    color: $bird !important;
+}
+.plant {
+    color: $plant !important;
+}
+.reptile {
+    color: $reptile !important;
+}
+
+.bg-darkgrey {
+    background-color: #343a40 !important;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.btn-secondary:checked {
+    background-color: #0d6efd!important;
+}
+
+ul {
+list-style: none;
+padding: 0!important;
+margin: 0;
+}
+
+.list-query {
+    background-color: #adb5bd;
+}
+
+// #sidebar {
+//     z-index: 1055;
+// }
+
+.container-fluid {
+    padding: 0!important;
+}
+
+figure {
+    margin: 0!important;
+}
+
+#sidebar {
+    z-index: 1055!important;
+}
+
+@media (min-width: 768px) {
+
+    // #sidebar {
+    //     width: 320px;
+    // }
+    div.fixed {
+        width: 320px;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .cards-container{
+        min-width: 100vw;
+    }
+}
+
