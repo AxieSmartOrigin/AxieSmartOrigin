@@ -49,36 +49,27 @@ class CardRepository extends ServiceEntityRepository
     /**
      * @return Card[] Returns an array of Card objects
      */
-    public function queryingCards($class=null, $part=null)
-    {
-        $qb = $this->createQueryBuilder('p');
-         
-        //$qb
-            // ->innerJoin('App\Entity\AxieClass', 'c', 'WITH', 'c = p.class')
-            // ->where('c.name like :classname')
-            // ->setParameter('classname', 'Aquatic')
+    public function findByTerms($terms) : array{
+        $alias = "c";
 
-        if ($class) {
-            $qb->innerJoin('App\Entity\AxieClass', 'c', 'WITH', 'c = p.class')
-            ->where(
-                $qb->expr()->like('c.name', ':classname')
-            )
-            ->setParameter('classname', $class);
+        $qb = $this->createQueryBuilder($alias);
+
+        foreach (explode(" ", $terms) as $i => $term) {
+
+            $qb
+                ->andWhere($qb->expr()->orX( // nested condition
+                    $qb->expr()->like($alias . ".description", ":term" . $i),
+                    $qb->expr()->like($alias . ".name", ":term" . $i),
+                    //$qb->expr()->like($alias . ".class", ":term" . $i),
+                    //$qb->expr()->like($alias . ".tag", ":term" . $i),
+                    //$qb->expr()->like($alias . ".part", ":term" . $i)
+                ))
+                ->setParameter("term" . $i, "%" . $term . "%")
+            ;
         }
 
-        if ($part) {
-            $qb->innerJoin('App\Entity\Part', 'b', 'WITH', 'b = p.part')
-            ->andWhere(
-                $qb->expr()->like('b.name', ':partname')
-            )
-            ->setParameter('partname', $part);
-        }
+        return $qb->getQuery()->getResult();
 
-
-        $query = $qb->getQuery();
-            dump($query->getResult());
-            dump($query->execute());
-        return $query->getResult();
     }
 
 

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use function PHPUnit\Framework\isEmpty;
+
 /**
  * @Route("/card/explorer")
  */
@@ -26,10 +28,11 @@ class CardExplorerController extends AbstractController
         //Dans un premier temps je regarde si des filtres sont présents dans l'URL:
         //  - Si oui, je traite et decoupe les filtres individuellements pour les mettres dans un tableau;
         //  - Si non, je vais charger toutes les cartes depuis le Repository
-        
-        if (isset( $_SERVER['QUERY_STRING'])) {
-
+            //dump($_SERVER); 
+        if (!empty( $_SERVER['QUERY_STRING'])) {
+            //dump('in');
             $queries = $_SERVER['QUERY_STRING'];
+            //dump($queries);
             $queriesStrings = explode('&', $queries);
 
             $queriesFilters = [];
@@ -44,32 +47,53 @@ class CardExplorerController extends AbstractController
 
             // Je créé le tableau $criteria qui contient les filtres pertinents pour le tri des cartes,
             // cela va me permettre d'ignorer tout les filtres qui n'ont rien à voir avec les cartes
-            $criteria = array('class', 'part', 'cost', 'tag', 'damage', 'shield', 'heal');
-   
+            $criteria = array('class', 'part', 'cost', 'tag', 'damage', 'shield', 'heal', 'search');
+            $searchedTerms = '';
+            
             foreach ($queriesFilters as $key => $tabl) {
                 foreach ($tabl as $query => $value) {
+                    //dump($tabl);
 
                     if (array_search($query,$criteria) === false) {
                         unset($queriesFilters[$key]);
+                    }elseif (array_key_exists('search', $tabl) === true) {
+
+                        $searchedTerms = $value;
+                        unset($queriesFilters[$key]);
+                        //dump('searchedTerms', $searchedTerms);
                     }
                 }
             }
+
+            
+
             $queriesFilters = array_values($queriesFilters);
             dump($queriesFilters);
+            //exit;
             // $queriesFilters ne contient maintenant que les filtres intéressants avec la valeur associé
             /*
             Exemple: pour "/?class=Aquatic&oui=non&part=Horn&cost=1"
-
             array(3) {  [0]=> array(1) { ["class"]=> string(7) "Aquatic" } 
                         [1]=> array(1) { ["part"]=> string(4) "Horn" }
                         [2]=> array(1) { ["cost"]=> string(1) "1" } 
                     }
             */
 
+            
+
+
             // Maintenant je récupère toutes les cartes depuis la base de donnée,
             // je crée également un tableau $cards[] dans lequel je mettrais les cartes validées par les filtres
-            $cardsFetched = $cardRepository->findAllOrder();
-            $cards = [];
+
+            if (is_null($searchedTerms)) {
+
+                $cardsFetched = $cardRepository->findAllOrder();
+
+            }else {
+                $cardsFetched = $cardRepository->findByTerms($searchedTerms);
+            }
+            
+            $cards = []; 
 
             // Je commence le traitement de chaque carte:
             foreach ($cardsFetched as $card) {
@@ -82,7 +106,7 @@ class CardExplorerController extends AbstractController
                  'tag' => null,
                  'damage' => null,
                  'shield' => null,
-                 'heal' => null,];
+                 'heal' => null];
 
                 // Dans cette boucle, on vérifie que les filtres matchs avec la carte,
                 // On oublie pas qu'un filtre peut avoir plusieurs valeurs ex:"/?class=Aquatic&class=Beast&part=Horn"
