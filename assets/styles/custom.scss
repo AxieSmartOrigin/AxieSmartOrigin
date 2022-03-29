@@ -93,6 +93,8 @@ figure {
     div.fixed {
         width: 320px;
         position: fixed;
+        overflow-y: auto;
+
     }
     .vh-sm-100 {
         height: 100vh!important;
